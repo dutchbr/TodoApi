@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using Microsoft.OpenApi.Models;
 
 namespace TodoApi
 {
@@ -33,6 +34,10 @@ namespace TodoApi
 
             services.AddControllers();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Descritivo Veioo", Version = "v1" });
+            });
 
 
         }
@@ -55,6 +60,13 @@ namespace TodoApi
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Descritivo");
+            });
+
         }
     }
 }
