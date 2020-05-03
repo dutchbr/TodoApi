@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 using Microsoft.OpenApi.Models;
+using TodoApi.classes;
 
 namespace TodoApi
 {
@@ -38,6 +39,9 @@ namespace TodoApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Descritivo Veioo", Version = "v1" });
             });
+
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
 
 
         }
